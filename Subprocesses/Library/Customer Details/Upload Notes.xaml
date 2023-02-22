@@ -1,0 +1,500 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Upload_Notes" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_IntDefaultDelay" Type="InArgument(x:Int32)" />
+    <x:Property Name="in_IntDefaultTimeout" Type="InArgument(x:Int32)" />
+    <x:Property Name="in_StrSummaryResCom" Type="InArgument(x:String)" />
+    <x:Property Name="in_StrDepartment" Type="InArgument(x:String)" />
+    <x:Property Name="in_StrCallReason" Type="InArgument(x:String)" />
+    <x:Property Name="in_StrCallCode" Type="InArgument(x:String)" />
+    <x:Property Name="in_StrNotesFileName" Type="InArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>887,6575</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap2010:Annotation.AnnotationText="Upload Notes : Upload Notes with passed in_StrNotes value, Summary Res Com, Department, Call Code." DisplayName="Upload Notes" sap:VirtualizedContainerService.HintSize="867,6475" sap2010:WorkflowViewState.IdRef="Sequence_6">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Default="Upload Notes" Name="strComponentName" />
+      <Variable x:TypeArguments="x:String" Name="strNotes" />
+      <Variable x:TypeArguments="x:Boolean" Name="boolPostConditionCheck" />
+      <Variable x:TypeArguments="x:Boolean" Name="boolConfirmationBoxExist" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="825,91" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[String.Format(&quot;Started Component: {0}&quot;, strComponentName)]" />
+    <Sequence sap2010:Annotation.AnnotationText="Checking All Incoming Arguments" DisplayName="Incoming Argument Check" sap:VirtualizedContainerService.HintSize="825,2036" sap2010:WorkflowViewState.IdRef="Sequence_1">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <If Condition="[in_IntDefaultDelay&gt;0]" DisplayName="If (in_IntDefaultDelay&gt;0)" sap:VirtualizedContainerService.HintSize="579,239" sap2010:WorkflowViewState.IdRef="If_1">
+        <If.Then>
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Trace" Message="[&quot;Incoming Argument Check Successful. in_IntDefaultDelay Value Is Greater Than 0&quot;]" />
+        </If.Then>
+        <If.Else>
+          <Throw Exception="[new Exception(&quot;Incoming Argument Check Failed. in_IntDefaultDelay Value Is Not Greater Than 0&quot;)]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_1" />
+        </If.Else>
+      </If>
+      <If Condition="[in_IntDefaultTimeout&gt;0]" DisplayName="If (in_IntDefaultTimeout&gt;0)" sap:VirtualizedContainerService.HintSize="579,239" sap2010:WorkflowViewState.IdRef="If_2">
+        <If.Then>
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Trace" Message="[&quot;Incoming Argument Check Successful. in_IntDefaultTimeout Value Is Greater Than 0&quot;]" />
+        </If.Then>
+        <If.Else>
+          <Throw Exception="[new Exception(&quot;Incoming Argument Check Failed. in_IntDefaultTimeout Value Is Not Greater Than 0&quot;)]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_2" />
+        </If.Else>
+      </If>
+      <If Condition="[Not String.IsNullOrEmpty(in_StrNotesFileName)]" DisplayName="If (Not String.IsNullOrEmpty(in_StrNotesFileName))" sap:VirtualizedContainerService.HintSize="579,239" sap2010:WorkflowViewState.IdRef="If_5">
+        <If.Then>
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Trace" Message="[&quot;Incoming Argument Check Successful. in_StrNotesFileName Value Is Not Null Or Empty.&quot;]" />
+        </If.Then>
+        <If.Else>
+          <Throw Exception="[new Exception(&quot;Incoming Argument Check Failed. in_StrNotesFileName Value Is Null Or Empty.&quot;)]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_5" />
+        </If.Else>
+      </If>
+      <If Condition="[Not String.IsNullOrEmpty(in_StrCallCode)]" DisplayName="If (Not String.IsNullOrEmpty(in_StrCallCode))" sap:VirtualizedContainerService.HintSize="579,239" sap2010:WorkflowViewState.IdRef="If_6">
+        <If.Then>
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="Trace" Message="[&quot;Incoming Argument Check Successful. in_StrCallCode Value Is Not Null Or Empty.&quot;]" />
+        </If.Then>
+        <If.Else>
+          <Throw Exception="[new Exception(&quot;Incoming Argument Check Failed. in_StrCallCode Value Is Null Or Empty.&quot;)]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_6" />
+        </If.Else>
+      </If>
+      <If Condition="[Not String.IsNullOrEmpty(in_StrCallReason)]" DisplayName="If (Not String.IsNullOrEmpty(in_StrCallReason))" sap:VirtualizedContainerService.HintSize="579,239" sap2010:WorkflowViewState.IdRef="If_7">
+        <If.Then>
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Trace" Message="[&quot;Incoming Argument Check Successful. in_StrCallReason Value Is Not Null Or Empty.&quot;]" />
+        </If.Then>
+        <If.Else>
+          <Throw Exception="[new Exception(&quot;Incoming Argument Check Failed. in_StrCallReason Value Is Null Or Empty.&quot;)]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_7" />
+        </If.Else>
+      </If>
+      <If Condition="[Not String.IsNullOrEmpty(in_StrCallReason)]" DisplayName="If (Not String.IsNullOrEmpty(in_StrDepartment))" sap:VirtualizedContainerService.HintSize="579,239" sap2010:WorkflowViewState.IdRef="If_8">
+        <If.Then>
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_10" Level="Trace" Message="[&quot;Incoming Argument Check Successful. in_StrDepartment Value Is Not Null Or Empty.&quot;]" />
+        </If.Then>
+        <If.Else>
+          <Throw Exception="[new Exception(&quot;Incoming Argument Check Failed. in_StrDepartment Value Is Null Or Empty.&quot;)]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_8" />
+        </If.Else>
+      </If>
+      <If Condition="[Not String.IsNullOrEmpty(in_StrSummaryResCom)]" DisplayName="If (Not String.IsNullOrEmpty(in_StrSummaryResCom))" sap:VirtualizedContainerService.HintSize="579,239" sap2010:WorkflowViewState.IdRef="If_9">
+        <If.Then>
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_11" Level="Trace" Message="[&quot;Incoming Argument Check Successful. in_StrSummaryResCom Value Is Not Null Or Empty.&quot;]" />
+        </If.Then>
+        <If.Else>
+          <Throw Exception="[new Exception(&quot;Incoming Argument Check Failed. in_StrSummaryResCom Value Is Null Or Empty.&quot;)]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_9" />
+        </If.Else>
+      </If>
+    </Sequence>
+    <Sequence sap2010:Annotation.AnnotationText="Pre-condition Check" DisplayName="Pre-Condition Check" sap:VirtualizedContainerService.HintSize="825,470" sap2010:WorkflowViewState.IdRef="Sequence_2">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:Boolean" Name="boolPreConditionCheck" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:UiElementExists DisplayName="Element Exists 'Notes Frame'" Exists="[boolPreConditionCheck]" sap:VirtualizedContainerService.HintSize="579,68" sap2010:WorkflowViewState.IdRef="UiElementExists_3">
+        <ui:UiElementExists.Target>
+          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="&lt;html app='chrome.exe' /&gt;&lt;webctrl id='noteCreation' tag='DIV' /&gt;" TimeoutMS="[in_IntDefaultTimeout]">
+            <ui:Target.WaitForReady>
+              <InArgument x:TypeArguments="ui:WaitForReady" />
+            </ui:Target.WaitForReady>
+          </ui:Target>
+        </ui:UiElementExists.Target>
+      </ui:UiElementExists>
+      <If Condition="[boolPreConditionCheck]" DisplayName="If (boolPreConditionCheck)" sap:VirtualizedContainerService.HintSize="579,239" sap2010:WorkflowViewState.IdRef="If_3">
+        <If.Then>
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Trace" Message="[&quot;Pre Condition Check Successful. Notes Uploader Frame Is Available.&quot;]" />
+        </If.Then>
+        <If.Else>
+          <Throw Exception="[New Exception(&quot;Pre Condition Check Failed. Notes Uploader Frame Is Not Available.&quot;)]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_4" />
+        </If.Else>
+      </If>
+    </Sequence>
+    <Sequence sap2010:Annotation.AnnotationText="Upload Notes" DisplayName="Do Work" sap:VirtualizedContainerService.HintSize="825,2754" sap2010:WorkflowViewState.IdRef="Sequence_3">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="783,91" sap2010:WorkflowViewState.IdRef="LogMessage_12" Level="Trace" Message="[&quot;Getting Notes From Text File.&quot;]" />
+      <ui:ReadTextFile Content="[strNotes]" DisplayName="Read Text File" FileName="[in_StrNotesFileName]" sap:VirtualizedContainerService.HintSize="783,132" sap2010:WorkflowViewState.IdRef="ReadTextFile_1" />
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="783,91" sap2010:WorkflowViewState.IdRef="LogMessage_13" Level="Trace" Message="[&quot;Typing Notes Into Notes Frame.&quot;]" />
+      <ui:TypeInto DelayBetweenKeys="{x:Null}" SendWindowMessages="{x:Null}" SimulateType="{x:Null}" Activate="True" ClickBeforeTyping="True" DelayBefore="[in_IntDefaultDelay]" DelayMS="[in_IntDefaultDelay]" DisplayName="Type Into 'Notes'" EmptyField="True" sap:VirtualizedContainerService.HintSize="783,96" sap2010:WorkflowViewState.IdRef="TypeInto_1" Text="[strNotes]">
+        <ui:TypeInto.Target>
+          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="&lt;html app='chrome.exe' /&gt;&lt;webctrl id='noteTextArea_ifr' tag='IFRAME' /&gt;" TimeoutMS="[in_IntDefaultTimeout]">
+            <ui:Target.WaitForReady>
+              <InArgument x:TypeArguments="ui:WaitForReady" />
+            </ui:Target.WaitForReady>
+          </ui:Target>
+        </ui:TypeInto.Target>
+      </ui:TypeInto>
+      <ui:SelectItem ContinueOnError="{x:Null}" DelayAfter="[in_IntDefaultDelay]" DelayBefore="[in_IntDefaultDelay]" DisplayName="Select Item 'Select Summary Res Com'" sap:VirtualizedContainerService.HintSize="783,96" sap2010:WorkflowViewState.IdRef="SelectItem_1" Item="[in_StrSummaryResCom]">
+        <ui:SelectItem.Items>
+          <scg:List x:TypeArguments="x:String" Capacity="4">
+            <x:String>N/A</x:String>
+            <x:String>Yes</x:String>
+            <x:String>No</x:String>
+          </scg:List>
+        </ui:SelectItem.Items>
+        <ui:SelectItem.Target>
+          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="&lt;html app='chrome.exe' /&gt;&lt;webctrl id='summaryResCom' tag='SELECT' /&gt;" TimeoutMS="[in_IntDefaultTimeout]">
+            <ui:Target.WaitForReady>
+              <InArgument x:TypeArguments="ui:WaitForReady" />
+            </ui:Target.WaitForReady>
+          </ui:Target>
+        </ui:SelectItem.Target>
+      </ui:SelectItem>
+      <ui:SelectItem ContinueOnError="{x:Null}" DelayAfter="[in_IntDefaultDelay]" DelayBefore="[in_IntDefaultDelay]" DisplayName="Select Item 'Select Department'" sap:VirtualizedContainerService.HintSize="783,96" sap2010:WorkflowViewState.IdRef="SelectItem_2" Item="[in_StrDepartment]">
+        <ui:SelectItem.Items>
+          <scg:List x:TypeArguments="x:String" Capacity="16">
+            <x:String>Customer service</x:String>
+            <x:String>End of contract</x:String>
+            <x:String>Customer relations</x:String>
+            <x:String>Re-marketing</x:String>
+            <x:String>Financial solutions</x:String>
+            <x:String>Litigation</x:String>
+            <x:String>EV</x:String>
+            <x:String>Business Ops</x:String>
+            <x:String>Underwriting/Payout</x:String>
+            <x:String>Contract Hire</x:String>
+            <x:String>Renewals</x:String>
+            <x:String>Non-Ops Department</x:String>
+            <x:String>Dealer Ops</x:String>
+          </scg:List>
+        </ui:SelectItem.Items>
+        <ui:SelectItem.Target>
+          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="&lt;html app='chrome.exe' /&gt;&lt;webctrl id='selectDepartment' tag='SELECT' /&gt;" TimeoutMS="[in_IntDefaultTimeout]">
+            <ui:Target.WaitForReady>
+              <InArgument x:TypeArguments="ui:WaitForReady" />
+            </ui:Target.WaitForReady>
+          </ui:Target>
+        </ui:SelectItem.Target>
+      </ui:SelectItem>
+      <ui:SelectItem ContinueOnError="{x:Null}" DelayAfter="[in_IntDefaultDelay]" DelayBefore="[in_IntDefaultDelay]" DisplayName="Select Item 'Select Call Reason'" sap:VirtualizedContainerService.HintSize="783,96" sap2010:WorkflowViewState.IdRef="SelectItem_3" Item="[in_StrCallReason]">
+        <ui:SelectItem.Items>
+          <scg:List x:TypeArguments="x:String" Capacity="32">
+            <x:String>Arrears</x:String>
+            <x:String>Payment</x:String>
+            <x:String>End of Contract</x:String>
+            <x:String>Voluntary Termination</x:String>
+            <x:String>V5</x:String>
+            <x:String>Right of Withdrawal</x:String>
+            <x:String>Settlement</x:String>
+            <x:String>Insurarance Write off</x:String>
+            <x:String>Deceased</x:String>
+            <x:String>Vunerable</x:String>
+            <x:String>Complaint</x:String>
+            <x:String>Admin</x:String>
+            <x:String>Booked Appointment</x:String>
+            <x:String>Bought Alliance Brand</x:String>
+            <x:String>ought From Competition</x:String>
+            <x:String>Dissatisfaction</x:String>
+            <x:String>Future Purchase Intention</x:String>
+            <x:String>Keeping the Car</x:String>
+            <x:String>Not Interested</x:String>
+            <x:String>Passed to Dealer</x:String>
+            <x:String>Refinance</x:String>
+            <x:String>Lump Sum</x:String>
+            <x:String>Personal/Bank Due Date Change</x:String>
+            <x:String>Intrum Dialler</x:String>
+            <x:String>FS Intrum Call</x:String>
+          </scg:List>
+        </ui:SelectItem.Items>
+        <ui:SelectItem.Target>
+          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="&lt;html app='chrome.exe' /&gt;&lt;webctrl id='selectedCallReasonCode' tag='SELECT' /&gt;" TimeoutMS="[in_IntDefaultTimeout]">
+            <ui:Target.WaitForReady>
+              <InArgument x:TypeArguments="ui:WaitForReady" />
+            </ui:Target.WaitForReady>
+          </ui:Target>
+        </ui:SelectItem.Target>
+      </ui:SelectItem>
+      <ui:SelectItem ContinueOnError="{x:Null}" DelayAfter="[in_IntDefaultDelay]" DelayBefore="[in_IntDefaultDelay]" DisplayName="Select Item 'Select Call Code'" sap:VirtualizedContainerService.HintSize="783,96" sap2010:WorkflowViewState.IdRef="SelectItem_4" Item="[in_StrCallCode]">
+        <ui:SelectItem.Items>
+          <scg:List x:TypeArguments="x:String" Capacity="16">
+            <x:String>Call from Customer</x:String>
+            <x:String>Call from Auth 3rd</x:String>
+            <x:String>Call from Unauthorised</x:String>
+            <x:String>Call out - no contact</x:String>
+            <x:String>Call out - voicemail</x:String>
+            <x:String>Administration update</x:String>
+            <x:String>Viewed only</x:String>
+            <x:String>Final response: post</x:String>
+            <x:String>Final response: email</x:String>
+            <x:String>Call out RPC</x:String>
+            <x:String>Dissatisfaction</x:String>
+            <x:String>e-mail from customer</x:String>
+            <x:String>Intrum Payment Transfer</x:String>
+            <x:String>Intrum ATP</x:String>
+            <x:String>FS IntrumSMS</x:String>
+          </scg:List>
+        </ui:SelectItem.Items>
+        <ui:SelectItem.Target>
+          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="&lt;html app='chrome.exe' /&gt;&lt;webctrl id='selectCallCode' tag='SELECT' /&gt;" TimeoutMS="[in_IntDefaultTimeout]">
+            <ui:Target.WaitForReady>
+              <InArgument x:TypeArguments="ui:WaitForReady" />
+            </ui:Target.WaitForReady>
+          </ui:Target>
+        </ui:SelectItem.Target>
+      </ui:SelectItem>
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="783,91" sap2010:WorkflowViewState.IdRef="LogMessage_14" Level="Trace" Message="[&quot;Click Add Button To Add Notes.&quot;]" />
+      <ui:Click SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DelayBefore="[in_IntDefaultDelay]" DelayMS="[in_IntDefaultDelay]" DisplayName="Click 'Add'" sap:VirtualizedContainerService.HintSize="783,68" sap2010:WorkflowViewState.IdRef="Click_2" KeyModifiers="None" MouseButton="BTN_LEFT">
+        <ui:Click.CursorPosition>
+          <ui:CursorPosition Position="Center">
+            <ui:CursorPosition.OffsetX>
+              <InArgument x:TypeArguments="x:Int32" />
+            </ui:CursorPosition.OffsetX>
+            <ui:CursorPosition.OffsetY>
+              <InArgument x:TypeArguments="x:Int32" />
+            </ui:CursorPosition.OffsetY>
+          </ui:CursorPosition>
+        </ui:Click.CursorPosition>
+        <ui:Click.Target>
+          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="&lt;html app='chrome.exe' /&gt;&lt;webctrl tag='INPUT' aaname='Add' id='*AddNoteAction*' /&gt;" TimeoutMS="[in_IntDefaultTimeout]">
+            <ui:Target.WaitForReady>
+              <InArgument x:TypeArguments="ui:WaitForReady" />
+            </ui:Target.WaitForReady>
+          </ui:Target>
+        </ui:Click.Target>
+      </ui:Click>
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="783,91" sap2010:WorkflowViewState.IdRef="LogMessage_15" Level="Trace" Message="[&quot;Checking If Confirmation Dialog Box Appears?&quot;]" />
+      <ui:OnUiElementAppear FoundElement="{x:Null}" WaitActive="{x:Null}" ContinueOnError="True" DisplayName="On Element Appear 'Confirmation Box'" sap:VirtualizedContainerService.HintSize="783,368" sap2010:WorkflowViewState.IdRef="OnUiElementAppear_1" RepeatForever="False" WaitVisible="True">
+        <ui:OnUiElementAppear.Body>
+          <Sequence DisplayName="Do Click Close on Confirmation Box" sap:VirtualizedContainerService.HintSize="376,260" sap2010:WorkflowViewState.IdRef="Sequence_8">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:Click SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DelayBefore="[in_IntDefaultDelay]" DelayMS="[in_IntDefaultDelay]" DisplayName="Click 'Close'" sap:VirtualizedContainerService.HintSize="334,68" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT">
+              <ui:Click.CursorPosition>
+                <ui:CursorPosition Position="Center">
+                  <ui:CursorPosition.OffsetX>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:CursorPosition.OffsetX>
+                  <ui:CursorPosition.OffsetY>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:CursorPosition.OffsetY>
+                </ui:CursorPosition>
+              </ui:Click.CursorPosition>
+              <ui:Click.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="&lt;html app='chrome.exe' /&gt;&lt;webctrl aaname='*Close*' idx='8' tag='SPAN' /&gt;" TimeoutMS="[in_IntDefaultTimeout]">
+                  <ui:Target.WaitForReady>
+                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                  </ui:Target.WaitForReady>
+                </ui:Target>
+              </ui:Click.Target>
+            </ui:Click>
+            <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Boolean">[boolConfirmationBoxExist]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+              </Assign.Value>
+            </Assign>
+          </Sequence>
+        </ui:OnUiElementAppear.Body>
+        <ui:OnUiElementAppear.Target>
+          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="&lt;html app='chrome.exe' /&gt;&lt;webctrl parentid='jqueryMessageBox' tag='TABLE' /&gt;&lt;webctrl id='global.message.liste' tag='TD' aaname='The note has been successfully added.' colName='The note has been successfully added.' /&gt;" TimeoutMS="[in_IntDefaultTimeout]">
+            <ui:Target.WaitForReady>
+              <InArgument x:TypeArguments="ui:WaitForReady" />
+            </ui:Target.WaitForReady>
+          </ui:Target>
+        </ui:OnUiElementAppear.Target>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:OnUiElementAppear>
+      <If Condition="[boolConfirmationBoxExist]" sap:VirtualizedContainerService.HintSize="783,739" sap2010:WorkflowViewState.IdRef="If_10">
+        <If.Then>
+          <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:Boolean">[boolPostConditionCheck]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+            </Assign.Value>
+          </Assign>
+        </If.Then>
+        <If.Else>
+          <Sequence DisplayName="Checking Error Dialog Box Appears" sap:VirtualizedContainerService.HintSize="476,591" sap2010:WorkflowViewState.IdRef="Sequence_13">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,91" sap2010:WorkflowViewState.IdRef="LogMessage_16" Level="Trace" Message="[&quot;Checking If Error Dialog Box Appears?&quot;]" />
+            <ui:OnUiElementAppear FoundElement="{x:Null}" WaitActive="{x:Null}" ContinueOnError="True" DisplayName="On Element Appear 'Error Box'" sap:VirtualizedContainerService.HintSize="434,368" sap2010:WorkflowViewState.IdRef="OnUiElementAppear_2" RepeatForever="False" WaitVisible="True">
+              <ui:OnUiElementAppear.Body>
+                <Sequence DisplayName="Do Click Close on Confirmation Box" sap:VirtualizedContainerService.HintSize="376,260" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:Click SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DelayBefore="[in_IntDefaultDelay]" DelayMS="[in_IntDefaultDelay]" DisplayName="Click 'Close'" sap:VirtualizedContainerService.HintSize="334,68" sap2010:WorkflowViewState.IdRef="Click_3" KeyModifiers="None" MouseButton="BTN_LEFT">
+                    <ui:Click.CursorPosition>
+                      <ui:CursorPosition Position="Center">
+                        <ui:CursorPosition.OffsetX>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:CursorPosition.OffsetX>
+                        <ui:CursorPosition.OffsetY>
+                          <InArgument x:TypeArguments="x:Int32" />
+                        </ui:CursorPosition.OffsetY>
+                      </ui:CursorPosition>
+                    </ui:Click.CursorPosition>
+                    <ui:Click.Target>
+                      <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="&lt;html app='chrome.exe' /&gt;&lt;webctrl aaname='Close ' idx='10' tag='SPAN' /&gt;" TimeoutMS="[in_IntDefaultTimeout]">
+                        <ui:Target.WaitForReady>
+                          <InArgument x:TypeArguments="ui:WaitForReady" />
+                        </ui:Target.WaitForReady>
+                      </ui:Target>
+                    </ui:Click.Target>
+                  </ui:Click>
+                  <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Boolean">[boolPostConditionCheck]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                </Sequence>
+              </ui:OnUiElementAppear.Body>
+              <ui:OnUiElementAppear.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="&lt;html app='chrome.exe' /&gt;&lt;webctrl id='ui-id-15' tag='SPAN' aaname='Error ' /&gt;" TimeoutMS="[in_IntDefaultTimeout]">
+                  <ui:Target.WaitForReady>
+                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                  </ui:Target.WaitForReady>
+                </ui:Target>
+              </ui:OnUiElementAppear.Target>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:OnUiElementAppear>
+          </Sequence>
+        </If.Else>
+      </If>
+    </Sequence>
+    <Sequence sap2010:Annotation.AnnotationText="Post-condition Check" DisplayName="Post-Condition Check" sap:VirtualizedContainerService.HintSize="825,545" sap2010:WorkflowViewState.IdRef="Sequence_4">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="621,51" sap2010:WorkflowViewState.IdRef="CommentOut_2">
+        <ui:CommentOut.Body>
+          <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="376,160" sap2010:WorkflowViewState.IdRef="Sequence_11">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:UiElementExists DisplayName="Element Exists 'Confirmation Box'" Exists="[boolPostConditionCheck]" sap:VirtualizedContainerService.HintSize="334,68" sap2010:WorkflowViewState.IdRef="UiElementExists_2">
+              <ui:UiElementExists.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Selector="&lt;html app='chrome.exe' /&gt;&lt;webctrl parentid='jqueryMessageBox' tag='TABLE' /&gt;&lt;webctrl id='global.message.liste' tag='TD' aaname='The note has been successfully added.' colName='The note has been successfully added.' /&gt;" TimeoutMS="[in_IntDefaultTimeout]">
+                  <ui:Target.WaitForReady>
+                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                  </ui:Target.WaitForReady>
+                </ui:Target>
+              </ui:UiElementExists.Target>
+            </ui:UiElementExists>
+          </Sequence>
+        </ui:CommentOut.Body>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:CommentOut>
+      <If Condition="[boolPostConditionCheck]" DisplayName="If (boolPostConditionCheck)" sap:VirtualizedContainerService.HintSize="621,331" sap2010:WorkflowViewState.IdRef="If_4">
+        <If.Then>
+          <Sequence sap:VirtualizedContainerService.HintSize="376,183" sap2010:WorkflowViewState.IdRef="Sequence_7">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Trace" Message="[&quot;Post Condition Check Successful. Notes Added Successfully.&quot;]" />
+          </Sequence>
+        </If.Then>
+        <If.Else>
+          <Throw Exception="[New Exception(&quot;Post Condition Check Failed. Unable To Add Notes Successfully.&quot;)]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_3" />
+        </If.Else>
+      </If>
+    </Sequence>
+    <Sequence sap2010:Annotation.AnnotationText="Checking All Outgoing Arguments" DisplayName="Outgoing Argument Check" sap:VirtualizedContainerService.HintSize="825,125" sap2010:WorkflowViewState.IdRef="Sequence_5">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </Sequence>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="825,91" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Info" Message="[String.Format(&quot;Ended Component: {0}&quot;, strComponentName)]" />
+  </Sequence>
+</Activity>
